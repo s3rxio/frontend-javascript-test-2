@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 const HomePage = lazy(() => import("./HomePage"));
 const BookPage = lazy(() => import("./BookPage"));
 
-const Router: FC = () => {
+const AppRouter: FC = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,4 +15,4 @@ const Router: FC = () => {
   );
 };
 
-export default Router;
+export default AppRouter;

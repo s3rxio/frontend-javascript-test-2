@@ -1,12 +1,15 @@
-import { FC } from "react";
-import Router from "../pages/Router";
+import React, { FC } from "react";
+import AppRouter from "../pages/AppRouter";
 import AppProvider from "./AppProvider";
+import { Loader } from "../shared/components";
 
 const App: FC = () => {
   return (
-    <AppProvider>
-      <Router />
-    </AppProvider>
+    <React.Suspense fallback={<Loader />}>
+      <AppProvider>
+        <AppRouter />
+      </AppProvider>
+    </React.Suspense>
   );
 };
 

@@ -3,6 +3,7 @@ import { ListResponse } from "../../../shared/types";
 import { Book } from "../../../shared/api/booksApi/types";
 import { Box, Typography } from "@mui/material";
 import BookList from "./BookList";
+import { Loader } from "../../../shared/components";
 
 export interface BookViewProps {
   data: ListResponse<Book> | undefined;
@@ -55,7 +56,7 @@ const BookView: FC<BookViewProps> = (props: BookViewProps) => {
         </Typography>
       )}
       <BookList books={books} />
-      {isFetching && <Typography variant="body1">Fetching...</Typography>}
+      {isFetching && <Loader />}
     </BookViewBox>
   );
 };
