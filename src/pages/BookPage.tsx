@@ -3,7 +3,7 @@ import { useGetBookQuery } from "../shared/api/booksApi";
 import { Container, Link } from "@mui/material";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { Loader } from "../shared/components";
-import BookDetails from "../modules/Book/components/BookDetails";
+import { BookDetails } from "../modules/Book";
 
 const BookPage: FC = () => {
   const { id } = useParams();

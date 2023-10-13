@@ -14,10 +14,10 @@ type SetState<S = any> = React.Dispatch<React.SetStateAction<S>>;
 
 export interface BookSearchProps {
   setQuery: SetState<string>;
-  
+
   category: Category;
   setCategory: SetState<Category>;
-  
+
   orderBy: OrderBy;
   setOrderBy: SetState<OrderBy>;
 }

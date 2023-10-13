@@ -1,17 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Book } from "../../../shared/api/booksApi/types";
-import {
-  Badge,
-  Box,
-  Chip,
-  Container,
-  List,
-  ListItem,
-  Paper,
-  Stack,
-  Typography,
-  colors
-} from "@mui/material";
+import { Box, Chip, Stack, Typography } from "@mui/material";
 
 const BookDetails: FC<Book["volumeInfo"]> = props => {
   const { title, authors, categories, imageLinks } = props;

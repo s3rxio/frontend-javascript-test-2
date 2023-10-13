@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { ListResponse } from "../../../shared/types";
 import { Book } from "../../../shared/api/booksApi/types";
 import { Box, Button, Typography } from "@mui/material";
@@ -70,9 +70,7 @@ const BooksView: FC<BookViewProps> = (props: BookViewProps) => {
     }
 
     setBooks(prev => [...prev, ...(data.items || [])]);
-    setShowMore(
-      (books.length < data.totalItems && maxResults < data.totalItems)
-    );
+    setShowMore(books.length < data.totalItems && maxResults < data.totalItems);
   }, [data]);
 
   if (!data) {
