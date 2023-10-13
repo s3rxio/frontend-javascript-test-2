@@ -1,16 +1,18 @@
 import { FC } from "react";
 import { useGetBookQuery } from "../shared/api/booksApi";
-import { Link } from "@mui/material";
+import { Container, Link } from "@mui/material";
 import { Link as RouterLink, useParams } from "react-router-dom";
+import { Loader } from "../shared/components";
+import BookDetails from "../modules/Book/components/BookDetails";
 
 const BookPage: FC = () => {
   const { id } = useParams();
-  const { data, isFetching } = useGetBookQuery(id || "");
+  const { data: book, isFetching } = useGetBookQuery(id || "");
 
   if (isFetching) {
-    return <div>Fetching...</div>;
+    return <Loader />;
   }
-  if (!data) {
+  if (!book) {
     return (
       <div>
         No data.{" "}
@@ -20,7 +22,11 @@ const BookPage: FC = () => {
       </div>
     );
   }
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+  return (
+    <Container>
+      <BookDetails {...book.volumeInfo} />
+    </Container>
+  );
 };
 
 export default BookPage;
