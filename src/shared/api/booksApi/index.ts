@@ -1,8 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Book, GetBooksParams } from "./types";
+import { Book, Category, GetBooksParams } from "./types";
 import { ListResponse } from "../../types";
 
 const key = import.meta.env.VITE_APP_BOOKS_API_KEY;
+
+const concatQueryAndCategory = (query: string, category: Category) => {
+  if (category === "all") {
+    return query;
+  }
+
+  return `${query.split(" ").join("+")}+subject:${category}`;
+};
 
 export const booksApi = createApi({
   reducerPath: "booksApi",
@@ -12,7 +20,7 @@ export const booksApi = createApi({
       query: params => ({
         url: "/volumes",
         params: {
-          q: params.q,
+          q: concatQueryAndCategory(params.q, params.category || "all"),
           orderBy: params.orderBy || "relevance",
           startIndex: params.startIndex || 0,
           maxResults: params.maxResults || 30,

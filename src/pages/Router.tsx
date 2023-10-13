@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./HomePage";
-import BookPage from "./BookPage";
+
+const HomePage = lazy(() => import("./HomePage"));
+const BookPage = lazy(() => import("./BookPage"));
 
 const Router: FC = () => {
   return (

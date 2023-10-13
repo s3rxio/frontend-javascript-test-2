@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useGetBookQuery } from "../shared/api/booksApi";
 import { Link } from "@mui/material";
 import { Link as RouterLink, useParams } from "react-router-dom";

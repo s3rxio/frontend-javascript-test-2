@@ -6,7 +6,7 @@ export interface Book {
 export interface VolumeInfo {
   title: string;
   authors?: string[];
-  categories?: string[];
+  categories?: Exclude<Category, "all">[];
   description: string;
   imageLinks?: {
     thumbnail: string;
@@ -16,7 +16,19 @@ export interface VolumeInfo {
 
 export interface GetBooksParams {
   q: string;
-  orderBy?: "relevance" | "newest";
+  category?: Category;
+  orderBy?: OrderBy;
   startIndex?: number;
   maxResults?: number;
 }
+
+export type Category =
+  | "all"
+  | "art"
+  | "biography"
+  | "computers"
+  | "history"
+  | "medical"
+  | "poetry";
+
+export type OrderBy = "relevance" | "newest";
