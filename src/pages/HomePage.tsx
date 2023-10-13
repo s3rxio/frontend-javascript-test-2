@@ -30,6 +30,8 @@ const HomePage: FC = () => {
         setQuery={setQuery}
         setCategory={setCategory}
         setOrderBy={setOrderBy}
+        category={category}
+        orderBy={orderBy}
       />
       <BookView
         data={data}

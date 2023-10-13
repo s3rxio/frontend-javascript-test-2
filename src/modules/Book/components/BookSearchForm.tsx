@@ -14,12 +14,16 @@ type SetState<S = any> = React.Dispatch<React.SetStateAction<S>>;
 
 export interface BookSearchProps {
   setQuery: SetState<string>;
+  
+  category: Category;
   setCategory: SetState<Category>;
+  
+  orderBy: OrderBy;
   setOrderBy: SetState<OrderBy>;
 }
 
 const BookSearchForm: FC<BookSearchProps> = (props: BookSearchProps) => {
-  const { setQuery, setCategory, setOrderBy } = props;
+  const { setQuery, category, setCategory, orderBy, setOrderBy } = props;
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -72,6 +76,7 @@ const BookSearchForm: FC<BookSearchProps> = (props: BookSearchProps) => {
           <Select
             name="category"
             defaultValue={"all"}
+            value={category}
             onChange={e => setCategory(e.target.value as Category)}
           >
             <MenuItem value={"all"}>All</MenuItem>
@@ -87,6 +92,7 @@ const BookSearchForm: FC<BookSearchProps> = (props: BookSearchProps) => {
         <FormControl>
           <Select
             name="orderBy"
+            value={orderBy}
             defaultValue={"relevance"}
             onChange={e => setOrderBy(e.target.value as OrderBy)}
           >

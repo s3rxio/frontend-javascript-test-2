@@ -13,15 +13,7 @@ export interface BookViewProps {
   setStartIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const BookView: FC<BookViewProps> = (props: BookViewProps) => {
-  const { data, isFetching, isError } = props;
-
-  const [books, setBooks] = useState<Book[]>([]);
-
-  useEffect(() => {
-    setBooks(data?.items || []);
-  }, [data]);
-
+const BookViewBox: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Box
       sx={{
@@ -32,6 +24,31 @@ const BookView: FC<BookViewProps> = (props: BookViewProps) => {
         gap: 2
       }}
     >
+      {children}
+    </Box>
+  );
+};
+
+const BookView: FC<BookViewProps> = (props: BookViewProps) => {
+  const { data, isFetching, isError } = props;
+
+  const [books, setBooks] = useState<Book[]>([]);
+
+  useEffect(() => {
+    setBooks(data?.items || []);
+  }, [data]);
+
+  if (!data || isError) {
+    return (
+      <BookViewBox>
+        <Typography variant="body1">No data</Typography>
+      </BookViewBox>
+    );
+  }
+
+  return (
+    <BookViewBox>
+      <Typography variant="body1">Found {data?.totalItems} books</Typography>
       {isError && (
         <Typography color={"error"} variant="body1">
           Error
@@ -39,7 +56,7 @@ const BookView: FC<BookViewProps> = (props: BookViewProps) => {
       )}
       <BookList books={books} />
       {isFetching && <Typography variant="body1">Fetching...</Typography>}
-    </Box>
+    </BookViewBox>
   );
 };
 
