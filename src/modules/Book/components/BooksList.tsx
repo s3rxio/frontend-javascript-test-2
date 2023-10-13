@@ -10,8 +10,8 @@ const BookList: FC<{ books: Book[] }> = ({ books }) => {
       sx={{
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
         gap: 2,
-        justifyContent: "space-between",
         width: "100%"
       }}
     >

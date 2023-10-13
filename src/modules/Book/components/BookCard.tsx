@@ -1,6 +1,11 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Book } from "../../../shared/api/booksApi/types";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
 const BookCard: FC<Book> = ({ id, volumeInfo }: Book) => {
@@ -12,9 +17,9 @@ const BookCard: FC<Book> = ({ id, volumeInfo }: Book) => {
       to={`/${id}`}
       variant="outlined"
       sx={{
-        width: "100%",
-        maxWidth: 345,
-        transition: "all 0.2s",
+        width: "356px",
+        transitionProperty: "transform, box-shadow",
+        transitionDuration: "0.2s",
         "&:hover": {
           transform: "translateY(-4px)",
           boxShadow: "0 2px 2px 1px rgba(0,0,0,0.15)"
