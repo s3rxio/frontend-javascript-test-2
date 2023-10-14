@@ -69,6 +69,7 @@ const BooksView: FC<BookViewProps> = (props: BookViewProps) => {
       return;
     }
 
+
     setBooks(prev => [...prev, ...(data.items || [])]);
     setShowMore(books.length < data.totalItems && maxResults < data.totalItems);
   }, [data]);
@@ -81,7 +82,7 @@ const BooksView: FC<BookViewProps> = (props: BookViewProps) => {
     return (
       <BooksViewBox>
         <Typography variant="body1" color={"error"}>
-          Error
+          Error while loading, please try again
         </Typography>
       </BooksViewBox>
     );
@@ -92,6 +93,7 @@ const BooksView: FC<BookViewProps> = (props: BookViewProps) => {
       <Typography variant="body1">Found {data.totalItems} books</Typography>
 
       <BooksList books={books} />
+      {isFetching && <Loader />}
 
       {showMore && (
         <Button
@@ -102,7 +104,6 @@ const BooksView: FC<BookViewProps> = (props: BookViewProps) => {
           Load more
         </Button>
       )}
-      {isFetching && <Loader />}
     </BooksViewBox>
   );
 };
